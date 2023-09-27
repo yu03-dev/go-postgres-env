@@ -9,10 +9,13 @@ services:
       - "3000:3000"
     volumes:
       - .:/usr/src/app
+    environment:
+      - TZ=Asia/Tokyo
     command: air cmd/main.go -b 0.0.0.0
   db:
     image: postgres:alpine
     environment:
+      - TZ=Asia/Tokyo
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_NAME=${DB_NAME}
