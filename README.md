@@ -14,12 +14,13 @@
 
 ### 2. コンテナ内で go modules を初期化
 
-```docker
-# --rmオプションでコンテナから抜けるときコンテナを削除する
-docker compose run --rm web bash
+```bash
+make run_web
 ```
 
-```go
+コンテナ内に入れたら以下を実行
+
+```bash
 go mod init <モジュール名>
 ```
 
@@ -31,7 +32,7 @@ exit
 
 ### 3. Dockerfile のコメントアウトを外す
 
-ホットリロードと go module の依存関係の更新を設定
+ホットリロードと go module の依存関係の更新を設定（コメントアウトを外す）
 
 ```dockerfile
 RUN go install github.com/cosmtrek/air@latest
@@ -55,8 +56,8 @@ DB_NAME=gogo
 ### 5. イメージの再ビルドとコンテナの作成、起動
 
 ```bash
-docker compose build
-docker compose up
+make build
+make up
 ```
 
 ターミナルに`[Success]: Hello world!!`と表示されれば OK
